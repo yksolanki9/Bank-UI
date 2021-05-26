@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import 'axios';
-
 import Dropdown from './Dropdown/Dropdown';
 import Table from './Table/Table';
-import axios from "axios";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -90,15 +87,29 @@ function App() {
  const [selectedOption, setSelectedOption] = React.useState(options[0]);
     
     const [data, setData] = React.useState([]); // use an empty array as initial value
-  
+   
     React.useEffect(() => {
-      axios.get("/api/branches/city?q=" + selectedOption['value'])
-        .then((res) => {
-          setData(res.data); // set the state
-        })
-        .catch((err) => {
-          console.log("err");
-        });
+      const endPoint = "/api/branches/city?q=" + selectedOption['value'];
+
+      const getCache = async () => {
+        try {
+          if ("caches" in window) {
+            const bankCache = await caches.open("bank-cache");
+    
+            var cachedResponse = await bankCache.match(endPoint);
+            if (!cachedResponse) {
+              await bankCache.add(endPoint);
+              cachedResponse = await bankCache.match(endPoint);
+            }
+    
+            const jsonCachedResponse = await cachedResponse.json();
+            setData(jsonCachedResponse);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getCache();
     }, [selectedOption]);
 
   return (
