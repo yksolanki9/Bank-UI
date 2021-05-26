@@ -132,21 +132,13 @@ function Table({ columns, data }) {
                           />
                         )} 
                   </td>
-  
-
-                {/* <td>
-                  <AiOutlineStar
-                        style={{color : "yellow"}}
-                        size={28}
-                      />
-                  </td> */}
 
                   {row.cells.map((cell) => {
-
-                    return (
-                     
-                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
+                    if(cell.value) {
+                      return (
+                          <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      );
+                    }
                   })}
                 </tr>
               );
