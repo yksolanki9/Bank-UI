@@ -62,9 +62,6 @@ app.get('/api/branches/autocomplete', (req, res) => {
         try {
             const response = await client.query(query);
             res.send(response.rows);
-            // for(let row of response.rows) {
-            //     console.log(row);
-            // }
         } catch (err) {
             console.log(err.stack);
         }
@@ -72,7 +69,6 @@ app.get('/api/branches/autocomplete', (req, res) => {
 });
 
 app.get('/api/branches/city', (req, res) => {
-    console.log(req.query);
     const q = req.query.q;
     const limit = req.query.limit;
     const offset = req.query.offset;

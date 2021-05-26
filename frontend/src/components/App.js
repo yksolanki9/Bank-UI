@@ -43,6 +43,10 @@ function App() {
   const columns = React.useMemo(
     () => [
       {
+        Header: "Favourite",
+        accessor: 'fav'
+      },
+      {
         Header: "IFSC Code",
         accessor: "ifsc"
       },

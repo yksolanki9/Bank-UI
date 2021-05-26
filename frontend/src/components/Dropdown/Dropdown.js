@@ -1,18 +1,17 @@
 import React from 'react';
 import Select from "react-select";
-// import { CityContext } from '../CityContext';
 
 function Dropdown(props) {
 
-    // const {options, selectedValue} = React.useContext(CityContext);
-    // const [selectedOption, setSelectedOption] = selectedValue;
-
     return (
+      <>
+      <h1>Bank Branches:</h1>
     <Select
       defaultValue={props.selectedOption}
       onChange={props.setSelectedOption}
       options={props.options}
     />
+    </>
     );
 }
 

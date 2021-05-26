@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, usePagination} from "react-table";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
 
 function GlobalFilter({
     preGlobalFilteredRows,
@@ -68,11 +70,31 @@ function Table({ columns, data }) {
       useGlobalFilter, // useGlobalFilter!
       usePagination
     );
-  
-  
+    
+    const [favorites, setFavorites] = React.useState([]);
+
+    React.useEffect(() => {
+      let favsFromStorage = localStorage.getItem('favorites') || null;
+      favsFromStorage = JSON.parse(favsFromStorage);
+      setFavorites(favsFromStorage ? favsFromStorage : [])
+    }, []);
+    
+    React.useEffect(() => {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
+
+    const addFav = ifscCode => {
+      console.log(ifscCode + ' added');
+      setFavorites((prevFavorites) => [...prevFavorites, ifscCode]);
+    }
+
+    const removeFav = ifscCode => {
+      console.log(ifscCode + ' removed');
+      setFavorites((prevFavorites) => prevFavorites.filter((i) => i !== ifscCode));
+    }
+
     return (
       <>
-      <h1>Bank Branches:</h1>
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
@@ -91,11 +113,39 @@ function Table({ columns, data }) {
           <tbody {...getTableBodyProps()}>
             {page.map((row, i) => {
               prepareRow(row);
+
+              const ifscCode = row.original.ifsc; 
               return (
                 <tr {...row.getRowProps()}>
+                  <td> 
+                    {favorites.includes(ifscCode) ? (
+                          <AiFillStar 
+                            onClick={() => removeFav(ifscCode)}
+                            style={{color : "yellow"}}
+                            size={28}
+                          />
+                        ) : (
+                          <AiOutlineStar
+                            onClick={() => addFav(ifscCode)}
+                            style={{color : "yellow"}}
+                            size={28}
+                          />
+                        )} 
+                  </td>
+  
+
+                {/* <td>
+                  <AiOutlineStar
+                        style={{color : "yellow"}}
+                        size={28}
+                      />
+                  </td> */}
+
                   {row.cells.map((cell) => {
+
                     return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                     
+                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     );
                   })}
                 </tr>
