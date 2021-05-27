@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/static/js/main.f94e6e56.chunk.js",
+    "main.js.map": "/static/js/main.f94e6e56.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b27efde7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b27efde7.js.map",
+    "static/css/2.b78f5e3a.chunk.css": "/static/css/2.b78f5e3a.chunk.css",
+    "static/js/2.df36148c.chunk.js": "/static/js/2.df36148c.chunk.js",
+    "static/js/2.df36148c.chunk.js.map": "/static/js/2.df36148c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.b78f5e3a.chunk.css.map": "/static/css/2.b78f5e3a.chunk.css.map",
+    "static/js/2.df36148c.chunk.js.LICENSE.txt": "/static/js/2.df36148c.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/nunito-sans-vietnamese-400-normal.5eb08514.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b27efde7.js",
+    "static/css/2.b78f5e3a.chunk.css",
+    "static/js/2.df36148c.chunk.js",
+    "static/js/main.f94e6e56.chunk.js"
+  ]
+}
