@@ -1,46 +1,12 @@
 import React from 'react';
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, usePagination} from "react-table";
+import { useTable, useFilters, useGlobalFilter, usePagination} from "react-table";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-
-function GlobalFilter({
-    preGlobalFilteredRows,
-    globalFilter,
-    setGlobalFilter
-  }) {
-    const [value, setValue] = React.useState(globalFilter);
-    const onChange = useAsyncDebounce((value) => {
-      setGlobalFilter(value || undefined);
-    }, 200);
-  
-    return (
-      <span>
-        Search:{" "}
-        <input
-          value={value || ""}
-          onChange={(e) => {
-            setValue(e.target.value);
-            onChange(e.target.value);
-          }}
-          style={{
-            fontSize: "1.1rem",
-            marginBottom: "2rem"
-          }}
-        />
-        <button
-          onClick={() => {
-            setValue("");
-            onChange("");
-          }}
-        >
-          Reset
-        </button>
-      </span>
-    );
-  }
+import GlobalFilter from '../GlobalFilter/GlobalFilter';
 
 
-function Table({ columns, data }) {
+
+function Table({ columns, data, selectedOption }) {
     const {
       getTableProps,
       getTableBodyProps,
@@ -84,12 +50,12 @@ function Table({ columns, data }) {
     }, [favorites]);
 
     const addFav = ifscCode => {
-      console.log(ifscCode + ' added');
+      // console.log(ifscCode + ' added');
       setFavorites((prevFavorites) => [...prevFavorites, ifscCode]);
     }
 
     const removeFav = ifscCode => {
-      console.log(ifscCode + ' removed');
+      // console.log(ifscCode + ' removed');
       setFavorites((prevFavorites) => prevFavorites.filter((i) => i !== ifscCode));
     }
 
@@ -99,6 +65,7 @@ function Table({ columns, data }) {
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
+          selectedOption={selectedOption}
         />
         <table {...getTableProps()}>
           <thead>
@@ -133,12 +100,10 @@ function Table({ columns, data }) {
                         )} 
                   </td>
 
-                  {row.cells.map((cell) => {
-                    if(cell.value) {
+                  {row.cells.filter(cell => cell.value !== undefined).map((cell) => {
                       return (
                           <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                       );
-                    }
                   })}
                 </tr>
               );

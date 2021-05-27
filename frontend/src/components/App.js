@@ -115,7 +115,7 @@ function App() {
   return (
     <Styles>
       <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} selectedOption={selectedOption} />
     </Styles>
   );
 }
