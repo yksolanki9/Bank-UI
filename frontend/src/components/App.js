@@ -1,39 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import Dropdown from './Dropdown/Dropdown';
-import Table from './Table/Table';
+import Dropdown from './Dropdown';
+import GlobalStyles from "./GlobalStyles";
+import SiteHeader from "./SiteHeader";
+import Table from './Table';
 
-const Styles = styled.div`
-  padding: 1rem;
 
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
-
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-  .pagination {
-    padding: 0.5rem;
-  }
-`;
 
 function App() {
 
@@ -48,7 +19,7 @@ function App() {
         accessor: "ifsc"
       },
       {
-        Header: "Bank Id",
+        Header: "Bank_Id",
         accessor: "bank_id"
       },
   
@@ -113,10 +84,12 @@ function App() {
     }, [selectedOption]);
 
   return (
-    <Styles>
-      <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-      <Table columns={columns} data={data} selectedOption={selectedOption} />
-    </Styles>
+    <div>
+    <GlobalStyles />
+    <SiteHeader />
+    <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+    <Table columns={columns} data={data} selectedOption={selectedOption} />
+    </div>
   );
 }
 

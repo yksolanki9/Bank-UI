@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAsyncDebounce } from 'react-table';
+import SearchBox from './SearchBox';
 
 
 export default function GlobalFilter({
@@ -8,8 +9,7 @@ export default function GlobalFilter({
     setGlobalFilter,
     selectedOption
   }) {
-    const [value, setValue] = React.useState(globalFilter);
-    React.useEffect(() => console.log(value), [value]);
+    const [value, setValue] = React.useState('');
     React.useEffect(() => {
         setValue('')
       }, [selectedOption]);
@@ -18,27 +18,13 @@ export default function GlobalFilter({
     }, 200);
   
     return (    
-      <span>
-        Search:{" "}
-        <input
+        <SearchBox
           value={value || ""}
           onChange={(e) => {
             setValue(e.target.value);
             onChange(e.target.value);
           }}
-          style={{
-            fontSize: "1.1rem",
-            marginBottom: "2rem"
-          }}
-        />
-        <button
-          onClick={() => {
-            setValue("");
-            onChange("");
-          }}
-        >
-          Reset
-        </button>
-      </span>
+          placeholder="Enter a Keyword"
+          />
     );
   }
