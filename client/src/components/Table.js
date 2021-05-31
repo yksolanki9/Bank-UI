@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import Select from "react-select";
 import { useTable, useFilters, useGlobalFilter, usePagination} from "react-table";
 import { AiFillStar, AiOutlineStar, AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 
@@ -70,6 +71,11 @@ const InputField = styled.input`
   &:focus {
     outline: none;
   }
+
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 function Table({ columns, data, selectedOption }) {
@@ -122,6 +128,20 @@ function Table({ columns, data, selectedOption }) {
       setFavorites((prevFavorites) => prevFavorites.filter((i) => i !== ifscCode));
     }
     
+    const [pageNum, setPageNum] = React.useState('');
+    React.useEffect(() => setPageNum(''), [selectedOption, state.pageSize]);
+
+    const pageSizes = [10, 20, 30, 40, 50, 100];
+    const pageSizeOptions = pageSizes.map((pageSize) => ({
+      value: pageSize,
+      label: "Show " + pageSize
+    }));
+
+    const CustomSelect = styled(Select)`
+      display: inline-block;
+      width: 150px;
+    `;
+
     return (
       <>
         <GlobalFilter
@@ -153,35 +173,23 @@ function Table({ columns, data, selectedOption }) {
             Go to page: {" "}
 
             <Container>
-              <InputField type="search" onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }} />
+              <InputField type="number" 
+                value={pageNum}
+                min="1"
+                onChange={(e) => {
+                  const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                  gotoPage(page);
+                  setPageNum(e.target.value);
+                }} />
             </Container>
             </span>
-            {/* <input
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }}
-              style={{ width: "50px" }}
-            /> */}
-          
-            
-        
 
-          <select
-            value={state.pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-            }}
-          >
-            {[10, 20, 30, 40, 50, 100].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
+          <CustomSelect
+            value={pageSizeOptions.filter((option) => option.value === state.pageSize)}
+            defaultValue={pageSizeOptions[0]}
+            onChange= {(selectedPageSize) => setPageSize(selectedPageSize.value)}
+            options={pageSizeOptions}
+          />
         </Paginate>
 
         <Styles>
