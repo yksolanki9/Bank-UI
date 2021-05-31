@@ -85,10 +85,10 @@ function App() {
 
   return (
     <div>
-    <GlobalStyles />
-    <SiteHeader />
-    <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-    <Table columns={columns} data={data} selectedOption={selectedOption} />
+      <GlobalStyles />
+      <SiteHeader />
+      <Dropdown options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+      <Table columns={columns} data={data} selectedOption={selectedOption} />
     </div>
   );
 }

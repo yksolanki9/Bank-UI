@@ -42,6 +42,36 @@ const Paginate = styled.span`
     padding: 6px;
 `;
 
+const Container = styled.span`
+  border-radius: 5px;
+  background: hsl(0, 0%, 100%);
+  padding: 5px;
+  align-items: center;
+  max-width: 80px;
+  min-width: 60px;
+  border: 0.5px solid;
+  border-color: rgba(50, 115, 220, 0.3);
+  height: 10px
+`;
+
+const InputField = styled.input`
+  appearance: none;
+  background: transparent;
+  border: 5px;
+  color: inherit;
+  flex-grow: 1;
+  margin-left: 3px;
+  width: 60px;
+
+  &::placeholder {
+    color: hsl(200, 15%, 8%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 function Table({ columns, data, selectedOption }) {
     const {
       getTableProps,
@@ -119,16 +149,24 @@ function Table({ columns, data, selectedOption }) {
           </span> 
           </span>
 
-          <span>
-            Go to page:{" "}
-            <input
+            <span style={{padding: "0 15px 0 8px"}}>
+            Go to page: {" "}
+
+            <Container>
+              <InputField type="search" onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }} />
+            </Container>
+            </span>
+            {/* <input
               onChange={(e) => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0;
                 gotoPage(page);
               }}
               style={{ width: "50px" }}
-            />
-          </span>{" "}
+            /> */}
+          
             
         
 
