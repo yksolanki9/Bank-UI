@@ -142,6 +142,19 @@ function Table({ columns, data, selectedOption }) {
       width: 150px;
     `;
 
+    const Button = styled.button`
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      background: inherit;
+      border: none;
+
+      &:hover:enabled {
+        background: #69696969;
+      }
+    `;
+
+
     return (
       <>
         <GlobalFilter
@@ -153,9 +166,9 @@ function Table({ columns, data, selectedOption }) {
 
           <Paginate >
           <span style={{"padding": "10px"}}>
-          <span style={{"padding": "10px"}}>
-            <AiOutlineLeft onClick={() => previousPage()} disabled={!canPreviousPage}/>
-            </span>
+          <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            <AiOutlineLeft />
+          </Button>
 
           <span>
           {"   "}
@@ -163,10 +176,11 @@ function Table({ columns, data, selectedOption }) {
               {state.pageIndex + 1} of {pageOptions.length}
             </strong>{"   "}
           </span>
-
-          <span style={{"padding": "5px"}}>
-            <AiOutlineRight onClick={() => nextPage()} disabled={!canNextPage}/> 
-          </span> 
+        
+          <Button onClick={() => nextPage()} disabled={!canNextPage}>
+            <AiOutlineRight /> 
+          </Button>
+            
           </span>
 
             <span style={{padding: "0 15px 0 8px"}}>
