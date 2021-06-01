@@ -18,7 +18,7 @@ git clone https://github.com/yksolanki9/Find-my-bank
  ```sh
  npm install
  ```
-    Install client dependencies using:
+ Install client dependencies using:
  ```sh
  cd client && npm install
  ```
@@ -28,7 +28,7 @@ git clone https://github.com/yksolanki9/Find-my-bank
   ```sh
   node app.js
   ```
-    and the client on another terminal using:
+ and the client on another terminal using:
   ```sh
   cd client
   npm start
