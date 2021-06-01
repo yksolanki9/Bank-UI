@@ -15,12 +15,13 @@ const Title = styled.h1`
   margin: 0;
   font-size: 40px;
   font-weight: 800;
+  letter-spacing: 4px;
 `;
 
 export default function SiteHeader() {
   return (
     <Container>
-      <Title>Find your Bank</Title>
+      <Title>Find Your Bank</Title>
     </Container>
   );
 }

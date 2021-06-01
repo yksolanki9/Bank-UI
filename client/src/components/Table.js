@@ -13,8 +13,8 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-    border: 1px solid black;
-    margin: 70px
+    border: 1px solid rgba(50, 115, 220, 0.3);
+    color: #404040;
     tr {
       :last-child {
         td {
@@ -27,11 +27,15 @@ const Styles = styled.div`
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      border-bottom: 1px solid rgba(50, 115, 220, 0.3);
+      border-right: 1px solid rgba(50, 115, 220, 0.3);
       :last-child {
         border-right: 0;
       }
+    }
+
+    th {
+      padding: 1rem;
     }
   }
 
@@ -217,7 +221,7 @@ function Table({ columns, data, selectedOption }) {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                  <th width={column.width} {...column.getHeaderProps()}>{column.render("Header")}</th>
                 ))}
               </tr>
             ))}

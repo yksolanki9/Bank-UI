@@ -19,7 +19,7 @@ function App() {
         accessor: "ifsc"
       },
       {
-        Header: "Bank_Id",
+        Header: "Bank ID",
         accessor: "bank_id"
       },
   
@@ -41,7 +41,7 @@ function App() {
       },
       {
         Header: "State",
-        accessor: "state"
+        accessor: "state",
       }
         ],
     []
