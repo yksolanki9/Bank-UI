@@ -12,7 +12,7 @@ The Postgres DB is hosted on [clever-cloud](clever-sloud.com). You can check the
 ### Installation
 1. Clone this repository
 ```sh
-git clone https://github.com/yksolanki9/Bank-UI
+git clone https://github.com/yksolanki9/Find-my-bank
 ```
 2. Install server dependencies using:
  ```sh
