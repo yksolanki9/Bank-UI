@@ -1,16 +1,43 @@
-## About the project
-* A REST service that can fetch bank details, using the data given in the API’s query parameters.
-* The data available in [this](https://github.com/snarayanank2/indian_banks) repository is used as backend DB.
-* The Postgres DB is hosted on [clever-cloud](clever-sloud.com)
-* The Node app is hosted on heroku. You can check it [here](https://indian-bank-api.herokuapp.com)
+## Find My Bank
+This is a full stack web application to analyze and process data from the [Indian banks](https://github.com/snarayanank2/indian_banks) database with features like Dynamic filtering, Drop-down, Pagination, API Caching and State persistence.
+The Postgres DB is hosted on [clever-cloud](clever-sloud.com). You can check the complete app [here](https://bank-search-appui.herokuapp.com/)
 
-The app has following endpoints:
+### Built With
+* [PostgreSQL](https://www.postgresql.org/docs/current/)
+* [Node](https://nodejs.org/en/docs/)
+* [React](https://reactjs.org/docs/getting-started.html)
+* [React-Table](https://react-table.tanstack.com/)
+* [React-Select](https://react-select.com/home)
 
-1. Autocomplete API to return possible matches based on the branch name ordered by IFSC code with limit and offset.
-    1. Endpoint: /api/branches/autocomplete?q=<>
-    2. Example: /api/branches/autocomplete?q=RTGS&limit=3&offset=0
+### Installation
+1. Clone this repository
+```sh
+git clone https://github.com/yksolanki9/Bank-UI
+```
+2. Install server dependencies using:
+ ```sh
+ npm install
+ ```
+ Install client dependencies using:
+ ```sh
+ cd client && npm install
+ ```
 
-2. Search API to return possible matches across all columns and all rows, ordered by IFSC code with limit and offset.
-    1. Endpoint: /api/branches?q=<>
-    2. Example: /api/branches?q=Bangalore&limit=4&offset=0
+3. Create a `.env` file with database auth details as provided in `.sample.env`
+4. Start the server on one terminal using:
+  ```sh
+  node app.js
+  ```
+  and the client on another terminal using:
+  ```sh
+  cd client
+  npm start
+  ```
+5. The server is running on `http://localhost:3002` and client on `http://localhost:3000`
+
+
+## Contact
+
+Yash Solanki - [yashsolanki1709@gmail.com]()
+
 
