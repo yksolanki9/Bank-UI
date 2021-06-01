@@ -154,6 +154,12 @@ function Table({ columns, data, selectedOption }) {
       }
     `;
 
+    const CustomSpan = styled.span`
+      display: inline-block;
+      min-width: 80px;
+      text-align: center;
+    `;
+
 
     return (
       <>
@@ -170,12 +176,11 @@ function Table({ columns, data, selectedOption }) {
             <AiOutlineLeft />
           </Button>
 
-          <span>
+          <CustomSpan >
           {"   "}
-            <strong>
               {state.pageIndex + 1} of {pageOptions.length}
-            </strong>{"   "}
-          </span>
+            {"   "}
+          </CustomSpan>
         
           <Button onClick={() => nextPage()} disabled={!canNextPage}>
             <AiOutlineRight /> 
